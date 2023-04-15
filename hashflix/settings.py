@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import dj_database_url
+import os
 
 from pathlib import Path
 
@@ -23,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wpwu)o)fb93r954io%6xfmxlit_nfu=r9n7-j$h@@^c*)jr$n)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -40,8 +42,7 @@ INSTALLED_APPS = [
     'filme',
     'crispy_forms',
     'crispy_bootstrap5',  #https://github.com/django-crispy-forms/crispy-bootstrap5
-    'cloudinary_storage',
-    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -88,19 +89,12 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-import os
-
 DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL:
     DATABASES = {
         'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
     }
 
-DATABASES['default'] = dj_database_url.config(
-    conn_max_age=600,
-    conn_health_checks=True,
-)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -160,11 +154,3 @@ LOGIN_URL = 'filme:login'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'hm2q0svsm',
-    'API_KEY': '433526543462469',
-    'API_SECRET': 'Q8MDf1sHCI-qGj7IBRpoVjY_Up8'
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
