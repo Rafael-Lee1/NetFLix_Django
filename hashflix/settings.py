@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wpwu)o)fb93r954io%6xfmxlit_nfu=r9n7-j$h@@^c*)jr$n)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -114,6 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://*.netflixdjango-production.up.railway.app','https://*.127.0.0.1']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
